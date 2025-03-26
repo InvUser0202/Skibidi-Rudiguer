@@ -21,10 +21,6 @@ function displayFilteredGames(filteredGames) {
   const gamesContainer = document.getElementById("gamesContainer");
   gamesContainer.innerHTML = ""; 
 
-  function displayFilteredGames(filteredGames) {
-  const gamesContainer = document.getElementById("gamesContainer");
-  gamesContainer.innerHTML = ""; 
-
   filteredGames.forEach((game) => {
     const gameDiv = document.createElement("div");
     gameDiv.classList.add("game");
