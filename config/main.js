@@ -21,6 +21,10 @@ function displayFilteredGames(filteredGames) {
   const gamesContainer = document.getElementById("gamesContainer");
   gamesContainer.innerHTML = ""; 
 
+  function displayFilteredGames(filteredGames) {
+  const gamesContainer = document.getElementById("gamesContainer");
+  gamesContainer.innerHTML = ""; 
+
   filteredGames.forEach((game) => {
     const gameDiv = document.createElement("div");
     gameDiv.classList.add("game");
@@ -35,11 +39,28 @@ function displayFilteredGames(filteredGames) {
     const gameName = document.createElement("p");
     gameName.textContent = game.name;
 
+    // Create the fullscreen button
+    const fullscreenButton = document.createElement("button");
+    fullscreenButton.textContent = "Go Fullscreen";
+    fullscreenButton.onclick = () => {
+      if (gameDiv.requestFullscreen) {
+        gameDiv.requestFullscreen();
+      } else if (gameDiv.webkitRequestFullscreen) { // For Safari
+        gameDiv.webkitRequestFullscreen();
+      } else if (gameDiv.msRequestFullscreen) { // For IE
+        gameDiv.msRequestFullscreen();
+      } else {
+        alert("Fullscreen mode is not supported in this browser.");
+      }
+    };
+
+    // Append elements
     gameDiv.appendChild(gameImage);
     gameDiv.appendChild(gameName);
+    gameDiv.appendChild(fullscreenButton); // Add the fullscreen button
     gamesContainer.appendChild(gameDiv);
   });
-}
+  }
 
 
 function handleSearchInput() {
