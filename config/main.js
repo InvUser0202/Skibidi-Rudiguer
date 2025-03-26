@@ -60,7 +60,7 @@ function displayFilteredGames(filteredGames) {
     gameDiv.appendChild(fullscreenButton); // Add the fullscreen button
     gamesContainer.appendChild(gameDiv);
   });
-  }
+}
 
 
 function handleSearchInput() {
