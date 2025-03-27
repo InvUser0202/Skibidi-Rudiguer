@@ -4,7 +4,6 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Home</title>
-
     <script src="config/main.js" type="module"></script>
     <style>
       body {
@@ -17,10 +16,32 @@
         height: 100vh;
         border: none;
       }
+
+      #fullscreenButton {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        z-index: 1000;
+        padding: 10px 20px;
+        font-size: 16px;
+        background-color: #007bff;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+
+      #fullscreenButton:hover {
+        background-color: #0056b3;
+      }
     </style>
   </head>
   <body>
+    <!-- Game iframe -->
     <iframe id="gameFrame"></iframe>
+
+    <!-- Fullscreen Button -->
+    <button id="fullscreenButton">Go Fullscreen</button>
 
     <script>
       var serverUrl1 = "https://gms.parcoil.com";
@@ -35,6 +56,22 @@
         const embedUrl = `${serverUrl1}/${gameUrl}`;
         document.getElementById("gameFrame").src = embedUrl;
       }
+
+      // Fullscreen functionality
+      const gameFrame = document.getElementById('gameFrame');
+      const fullscreenButton = document.getElementById('fullscreenButton');
+
+      fullscreenButton.addEventListener('click', () => {
+        if (gameFrame.requestFullscreen) {
+          gameFrame.requestFullscreen();
+        } else if (gameFrame.webkitRequestFullscreen) { // For Safari
+          gameFrame.webkitRequestFullscreen();
+        } else if (gameFrame.msRequestFullscreen) { // For IE
+          gameFrame.msRequestFullscreen();
+        } else {
+          alert('Fullscreen mode is not supported by this browser.');
+        }
+      });
     </script>
   </body>
 </html>
