@@ -1757,10 +1757,10 @@
     "url": "zombs-royale",
     "new": false
   
-  "name": "Iron Snout",
-  "image": "iron-snout.png",
-  "url": "iron-snout",
-  "new": true
+    "name": "Iron Snout",
+    "image": "iron-snout.png",
+    "url": "iron-snout",
+    "new": true
   }
 ]
 
