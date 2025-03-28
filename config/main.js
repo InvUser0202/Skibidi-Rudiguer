@@ -5,8 +5,6 @@ var subtext = "Its coming out🤤"; // set the subtext
 
 // more settings in main.css
 
-
-
 // END CONFIG
 // DO NOT MODIFY IF YOU DO NOT KNOW WHAT YOUR DOING!
 
@@ -26,10 +24,23 @@ function displayFilteredGames(filteredGames) {
     gameDiv.classList.add("game");
 
     const gameImage = document.createElement("img");
-    gameImage.src = `${serverUrl1}/${game.url}/${game.image}`;
+
+    // Check if the game URL is a full external link or a relative path
+    if (game.url.startsWith("http")) {
+      gameImage.src = game.url; // Use the full external URL for the image
+    } else {
+      gameImage.src = `${serverUrl1}/${game.url}/${game.image}`; // Use relative path for the image
+    }
+
     gameImage.alt = game.name;
+
+    // Handle navigation based on the type of URL
     gameImage.onclick = () => {
-      window.location.href = `play.html?gameurl=${game.url}/`;
+      if (game.url.startsWith("http")) {
+        window.location.href = game.url; // Navigate directly to the external URL
+      } else {
+        window.location.href = `play.html?gameurl=${game.url}/`; // Navigate using local play.html
+      }
     };
 
     const gameName = document.createElement("p");
@@ -41,7 +52,6 @@ function displayFilteredGames(filteredGames) {
   });
 }
 
-
 function handleSearchInput() {
   const searchInputValue = document
     .getElementById("searchInput")
@@ -52,7 +62,6 @@ function handleSearchInput() {
   displayFilteredGames(filteredGames);
 }
 
-
 fetch("./config/games.json") 
   .then((response) => response.json())
   .then((data) => {
@@ -61,12 +70,10 @@ fetch("./config/games.json")
   })
   .catch((error) => console.error("Error fetching games:", error));
 
-
 document
   .getElementById("searchInput")
   .addEventListener("input", handleSearchInput);
 
 document.getElementById("title").innerHTML = `${sitename}`;
-
-document.getElementById("subtitle").innerHTML = `${subtext}`
+document.getElementById("subtitle").innerHTML = `${subtext}`;
 
