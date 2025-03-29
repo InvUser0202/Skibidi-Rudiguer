@@ -1759,8 +1759,8 @@
   },
   {
     "name": "Recoil",
-    "image": "iron-snout.png",
-    "url": "clrecoil.html",
+    "image": "https://invuser0202.github.io/html-game-hosting/Recoil/Recoil.jpg",
+    "url": "https://invuser0202.github.io/html-game-hosting/Recoil/clrecoil.html",
     "new": true
   }
 ]
