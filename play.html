@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Home</title>
+    <title>Play Game</title>
     <script src="config/main.js" type="module"></script>
     <style>
       body {
@@ -44,7 +44,9 @@
     <button id="fullscreenButton">Go Fullscreen</button>
 
     <script>
-      var serverUrl1 = "https://gms.parcoil.com";
+      const serverUrl1 = "https://gms.parcoil.com";
+      const serverUrl2 = "https://html-game-hosting.netlify.app";
+
       const queryString = window.location.search;
       const urlParams = new URLSearchParams(queryString);
       const gameUrl = urlParams.get("gameurl");
@@ -53,23 +55,31 @@
         alert("Game URL not provided!");
         window.location.href = "/"; // Redirect to homepage if game URL is missing
       } else {
-        const embedUrl = `${serverUrl1}/${gameUrl}`;
+        // Check which hosting site the game URL belongs to
+        let embedUrl;
+
+        if (gameUrl.startsWith("https://html-game-hosting.netlify.app")) {
+          embedUrl = gameUrl; // Directly use the Netlify-hosted URL
+        } else {
+          embedUrl = `${serverUrl1}/${gameUrl}`; // Use Parcoil hosting URL
+        }
+
         document.getElementById("gameFrame").src = embedUrl;
       }
 
       // Fullscreen functionality
-      const gameFrame = document.getElementById('gameFrame');
-      const fullscreenButton = document.getElementById('fullscreenButton');
+      const gameFrame = document.getElementById("gameFrame");
+      const fullscreenButton = document.getElementById("fullscreenButton");
 
-      fullscreenButton.addEventListener('click', () => {
+      fullscreenButton.addEventListener("click", () => {
         if (gameFrame.requestFullscreen) {
           gameFrame.requestFullscreen();
-        } else if (gameFrame.webkitRequestFullscreen) { // For Safari
-          gameFrame.webkitRequestFullscreen();
-        } else if (gameFrame.msRequestFullscreen) { // For IE
-          gameFrame.msRequestFullscreen();
+        } else if (gameFrame.webkitRequestFullscreen) {
+          gameFrame.webkitRequestFullscreen(); // For Safari
+        } else if (gameFrame.msRequestFullscreen) {
+          gameFrame.msRequestFullscreen(); // For IE
         } else {
-          alert('Fullscreen mode is not supported by this browser.');
+          alert("Fullscreen mode is not supported by this browser.");
         }
       });
     </script>
