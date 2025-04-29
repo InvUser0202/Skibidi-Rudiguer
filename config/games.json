@@ -1761,18 +1761,18 @@
     "name": "Recoil",
     "image": "https://invuser0202.github.io/html-game-hosting/Recoil/Recoil.png",
     "url": "https://html-game-hosting.netlify.app/Recoil/clrecoil.html",
-    "new": false
+    "new": true
   },
   {
     "name": "A Small World Cup",
     "image": "a",
     "url": "https://html-game-hosting.netlify.app/ASWC/clasmallworldcup.html",
-    "new": false
+    "new": true
   },
   {
     "name": "Bloons TD4",
     "image": "b"
-    "url": "https://html-game-hosting.netlify.app/bloons4/clbloonstd4"
-    "new": false
+    "url": "https://html-game-hosting.netlify.app/bloons4/clbloonstd4.html"
+    "new": true
   }
 ]
