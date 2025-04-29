@@ -1768,11 +1768,5 @@
     "image": "a",
     "url": "https://html-game-hosting.netlify.app/ASWC/clasmallworldcup.html",
     "new": true
-  },
-  {
-    "name": "Bloons TD4",
-    "image": "b"
-    "url": "https://html-game-hosting.netlify.app/bloons4/clbloonstd4.html"
-    "new": true
   }
 ]
