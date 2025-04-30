@@ -16,14 +16,14 @@
         height: 100vh;
         border: none;
         position: relative;
-        z-index: 1; /* Ensures iframe stays behind the button */
+        z-index: 1; /* Ensures iframe stays behind elements */
       }
 
       #fullscreenButton {
-        position: absolute;
+        display: block; /* Ensures visibility */
+        position: relative; /* Moves button above the iframe */
         top: 10px;
-        right: 10px;
-        z-index: 9999; /* Puts button above everything */
+        margin: 10px auto;
         padding: 10px 20px;
         font-size: 16px;
         background-color: #007bff;
@@ -31,7 +31,7 @@
         border: none;
         border-radius: 5px;
         cursor: pointer;
-        display: block; /* Ensures button is visible */
+        z-index: 9999; /* Puts button above everything */
       }
 
       #fullscreenButton:hover {
@@ -40,10 +40,10 @@
     </style>
   </head>
   <body>
-    <!-- Fullscreen Button -->
+    <!-- Fullscreen Button FIRST -->
     <button id="fullscreenButton">Go Fullscreen</button>
 
-    <!-- Game iframe -->
+    <!-- Game iframe BELOW -->
     <iframe id="gameFrame" allowfullscreen></iframe>
 
     <script>
@@ -71,19 +71,4 @@
 
       // Fullscreen functionality
       const gameFrame = document.getElementById("gameFrame");
-      const fullscreenButton = document.getElementById("fullscreenButton");
-
-      fullscreenButton.addEventListener("click", () => {
-        if (gameFrame.requestFullscreen) {
-          gameFrame.requestFullscreen();
-        } else if (gameFrame.webkitRequestFullscreen) {
-          gameFrame.webkitRequestFullscreen();
-        } else if (gameFrame.msRequestFullscreen) {
-          gameFrame.msRequestFullscreen();
-        } else {
-          alert("Fullscreen mode is not supported by this browser.");
-        }
-      });
-    </script>
-  </body>
-</html>
+      const fullscreenButton = document.getElementById("
