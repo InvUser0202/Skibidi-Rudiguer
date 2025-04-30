@@ -15,15 +15,13 @@
         width: 100%;
         height: 100vh;
         border: none;
-        position: relative;
-        z-index: 1; /* Ensures iframe stays behind elements */
       }
 
       #fullscreenButton {
-        display: block; /* Ensures visibility */
-        position: relative; /* Moves button above the iframe */
+        position: absolute;
         top: 10px;
-        margin: 10px auto;
+        right: 10px;
+        z-index: 1000;
         padding: 10px 20px;
         font-size: 16px;
         background-color: #007bff;
@@ -31,7 +29,6 @@
         border: none;
         border-radius: 5px;
         cursor: pointer;
-        z-index: 9999; /* Puts button above everything */
       }
 
       #fullscreenButton:hover {
@@ -40,11 +37,11 @@
     </style>
   </head>
   <body>
-    <!-- Fullscreen Button FIRST -->
-    <button id="fullscreenButton">Go Fullscreen</button>
-
-    <!-- Game iframe BELOW -->
+    <!-- Game iframe -->
     <iframe id="gameFrame" allowfullscreen></iframe>
+
+    <!-- Fullscreen Button -->
+    <button id="fullscreenButton">Go Fullscreen</button>
 
     <script>
       const serverUrl1 = "https://gms.parcoil.com";
@@ -58,12 +55,13 @@
         alert("Game URL not provided!");
         window.location.href = "/"; // Redirect to homepage if game URL is missing
       } else {
+        // Check which hosting site the game URL belongs to
         let embedUrl;
 
-        if (gameUrl.startsWith(serverUrl2)) {
-          embedUrl = gameUrl;
+        if (gameUrl.startsWith("https://html-game-hosting.netlify.app")) {
+          embedUrl = gameUrl; // Directly use the Netlify-hosted URL
         } else {
-          embedUrl = `${serverUrl1}/${gameUrl}`;
+          embedUrl = `${serverUrl1}/${gameUrl}`; // Use Parcoil hosting URL
         }
 
         document.getElementById("gameFrame").src = embedUrl;
@@ -71,4 +69,19 @@
 
       // Fullscreen functionality
       const gameFrame = document.getElementById("gameFrame");
-      const fullscreenButton = document.getElementById("
+      const fullscreenButton = document.getElementById("fullscreenButton");
+
+      fullscreenButton.addEventListener("click", () => {
+        if (gameFrame.requestFullscreen) {
+          gameFrame.requestFullscreen();
+        } else if (gameFrame.webkitRequestFullscreen) {
+          gameFrame.webkitRequestFullscreen(); // For Safari
+        } else if (gameFrame.msRequestFullscreen) {
+          gameFrame.msRequestFullscreen(); // For IE
+        } else {
+          alert("Fullscreen mode is not supported by this browser.");
+        }
+      });
+    </script>
+  </body>
+</html>
