@@ -38,11 +38,6 @@
     </style>
   </head>
   <body>
-    <!-- Debugging message -->
-    <script>
-      console.log("Script is running!");
-    </script>
-
     <!-- Fullscreen Button FIRST -->
     <button id="fullscreenButton">Go Fullscreen</button>
 
@@ -50,6 +45,9 @@
     <iframe id="gameFrame" allowfullscreen></iframe>
 
     <script>
+      // Alert for debugging on mobile
+      alert("Script is running!");
+
       const serverUrl1 = "https://gms.parcoil.com";
       const serverUrl2 = "https://html-game-hosting.netlify.app";
 
@@ -57,7 +55,7 @@
       const urlParams = new URLSearchParams(queryString);
       const gameUrl = urlParams.get("gameurl");
 
-      console.log("Game URL detected:", gameUrl); // Debugging check
+      alert("Game URL detected: " + gameUrl); // Debugging check for mobile
 
       if (!gameUrl) {
         alert("Game URL not provided!");
@@ -78,7 +76,7 @@
       const gameFrame = document.getElementById("gameFrame");
       const fullscreenButton = document.getElementById("fullscreenButton");
 
-      console.log("Fullscreen button found:", fullscreenButton); // Debugging check
+      alert("Fullscreen button found!"); // Debugging alert
 
       // Force the button to be visible
       fullscreenButton.style.display = "block";
