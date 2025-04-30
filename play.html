@@ -18,10 +18,10 @@
       }
 
       #fullscreenButton {
-        position: absolute;
+        display: block; /* Ensures it's always visible */
+        position: relative;
         top: 10px;
-        right: 10px;
-        z-index: 1000;
+        margin: 10px auto;
         padding: 10px 20px;
         font-size: 16px;
         background-color: #007bff;
@@ -29,6 +29,7 @@
         border: none;
         border-radius: 5px;
         cursor: pointer;
+        z-index: 9999; /* Ensures it's above other elements */
       }
 
       #fullscreenButton:hover {
@@ -37,11 +38,16 @@
     </style>
   </head>
   <body>
-    <!-- Game iframe -->
-    <iframe id="gameFrame" allowfullscreen></iframe>
+    <!-- Debugging message -->
+    <script>
+      console.log("Script is running!");
+    </script>
 
-    <!-- Fullscreen Button -->
+    <!-- Fullscreen Button FIRST -->
     <button id="fullscreenButton">Go Fullscreen</button>
+
+    <!-- Game iframe BELOW -->
+    <iframe id="gameFrame" allowfullscreen></iframe>
 
     <script>
       const serverUrl1 = "https://gms.parcoil.com";
@@ -51,33 +57,39 @@
       const urlParams = new URLSearchParams(queryString);
       const gameUrl = urlParams.get("gameurl");
 
+      console.log("Game URL detected:", gameUrl); // Debugging check
+
       if (!gameUrl) {
         alert("Game URL not provided!");
         window.location.href = "/"; // Redirect to homepage if game URL is missing
       } else {
-        // Check which hosting site the game URL belongs to
         let embedUrl;
 
-        if (gameUrl.startsWith("https://html-game-hosting.netlify.app")) {
-          embedUrl = gameUrl; // Directly use the Netlify-hosted URL
+        if (gameUrl.startsWith(serverUrl2)) {
+          embedUrl = gameUrl;
         } else {
-          embedUrl = `${serverUrl1}/${gameUrl}`; // Use Parcoil hosting URL
+          embedUrl = `${serverUrl1}/${gameUrl}`;
         }
 
         document.getElementById("gameFrame").src = embedUrl;
       }
 
-      // Fullscreen functionality
+      // Fullscreen functionality & force button visibility
       const gameFrame = document.getElementById("gameFrame");
       const fullscreenButton = document.getElementById("fullscreenButton");
+
+      console.log("Fullscreen button found:", fullscreenButton); // Debugging check
+
+      // Force the button to be visible
+      fullscreenButton.style.display = "block";
 
       fullscreenButton.addEventListener("click", () => {
         if (gameFrame.requestFullscreen) {
           gameFrame.requestFullscreen();
         } else if (gameFrame.webkitRequestFullscreen) {
-          gameFrame.webkitRequestFullscreen(); // For Safari
+          gameFrame.webkitRequestFullscreen();
         } else if (gameFrame.msRequestFullscreen) {
-          gameFrame.msRequestFullscreen(); // For IE
+          gameFrame.msRequestFullscreen();
         } else {
           alert("Fullscreen mode is not supported by this browser.");
         }
