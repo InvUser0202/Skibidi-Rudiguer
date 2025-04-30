@@ -18,7 +18,7 @@
       }
 
       #fullscreenButton {
-        display: block; /* Ensures it's always visible */
+        display: block; /* Ensures visibility */
         position: relative;
         top: 10px;
         margin: 10px auto;
@@ -29,7 +29,7 @@
         border: none;
         border-radius: 5px;
         cursor: pointer;
-        z-index: 9999; /* Ensures it's above other elements */
+        z-index: 9999; /* Puts button above everything */
       }
 
       #fullscreenButton:hover {
@@ -41,11 +41,11 @@
     <!-- Fullscreen Button FIRST -->
     <button id="fullscreenButton">Go Fullscreen</button>
 
-    <!-- Game iframe BELOW -->
-    <iframe id="gameFrame" allowfullscreen></iframe>
+    <!-- Game iframe BELOW with sandbox="allow-scripts" -->
+    <iframe id="gameFrame" allowfullscreen sandbox="allow-scripts"></iframe>
 
     <script>
-      // Alert for debugging on mobile
+      // Debugging for mobile
       alert("Script is running!");
 
       const serverUrl1 = "https://gms.parcoil.com";
