@@ -1768,5 +1768,11 @@
     "image": "a",
     "url": "https://html-game-hosting.netlify.app/ASWC/clasmallworldcup.html",
     "new": true
+  },
+  {
+    "name": "Iron Snout",
+    "image": "c",
+    "url": "https://html-game-hosting.netlify.app/IronSnout/iron-snout.html",
+    "new": true
   }
 ]
