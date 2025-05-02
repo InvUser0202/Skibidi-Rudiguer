@@ -7,24 +7,7 @@
 </head>
 <body>
     <h2>Testing Fullscreen on Netlify</h2>
-
-    <!-- Fullscreen Button Outside the Iframe -->
-    <button onclick="document.querySelector('iframe').requestFullscreen()">Test Fullscreen</button>
-
-    <!-- Game Iframe -->
-    <iframe id="gameFrame" src="https://html-game-hosting.netlify.app/game-example" allowfullscreen></iframe>
-
-    <script>
-        // Debug Alert for Mobile Users
-        alert("Script is running!");
-
-        // Check if the iframe exists
-        const gameFrame = document.getElementById("gameFrame");
-        if (!gameFrame) {
-            alert("Game iframe not found!");
-        } else {
-            alert("Game iframe detected!");
-        }
-    </script>
+    <iframe src="https://html-game-hosting.netlify.app/game-example" allowfullscreen></iframe>
 </body>
 </html>
+
