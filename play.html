@@ -1,97 +1,60 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Play Game</title>
-    <script src="config/main.js" type="module"></script>
     <style>
-      body {
-        margin: 0;
-        padding: 0;
-      }
+        /* Ensure the fullscreen button is visible */
+        #fullscreenButton {
+            display: block;
+            margin: 20px auto;
+            padding: 15px 25px;
+            font-size: 18px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-align: center;
+        }
+        #fullscreenButton:hover {
+            background-color: #0056b3;
+        }
 
-      iframe {
-        width: 100%;
-        height: 100vh;
-        border: none;
-      }
-
-      #fullscreenButton {
-        display: block; /* Ensures visibility */
-        position: relative;
-        top: 10px;
-        margin: 10px auto;
-        padding: 10px 20px;
-        font-size: 16px;
-        background-color: #007bff;
-        color: white;
-        border: none;
-        border-radius: 5px;
-        cursor: pointer;
-        z-index: 9999; /* Puts button above everything */
-      }
-
-      #fullscreenButton:hover {
-        background-color: #0056b3;
-      }
+        /* Ensure iframe fits within the viewport */
+        #gameFrame {
+            width: 100%;
+            height: 600px;
+            border: none;
+        }
     </style>
-  </head>
-  <body>
-    <!-- Fullscreen Button FIRST -->
+</head>
+<body>
+    <h2>Play Game</h2>
+
+    <!-- Fullscreen Button -->
     <button id="fullscreenButton">Go Fullscreen</button>
 
-    <!-- Game iframe BELOW with sandbox="allow-scripts" -->
-    <iframe id="gameFrame" allowfullscreen sandbox="allow-scripts"></iframe>
+    <!-- Game Iframe -->
+    <iframe id="gameFrame" src="https://html-game-hosting.netlify.app/game-example" allowfullscreen></iframe>
 
     <script>
-      // Debugging for mobile
-      alert("Script is running!");
+        // Ensure Fullscreen Button Works
+        const fullscreenButton = document.getElementById("fullscreenButton");
+        const gameFrame = document.getElementById("gameFrame");
 
-      const serverUrl1 = "https://gms.parcoil.com";
-      const serverUrl2 = "https://html-game-hosting.netlify.app";
-
-      const queryString = window.location.search;
-      const urlParams = new URLSearchParams(queryString);
-      const gameUrl = urlParams.get("gameurl");
-
-      alert("Game URL detected: " + gameUrl); // Debugging check for mobile
-
-      if (!gameUrl) {
-        alert("Game URL not provided!");
-        window.location.href = "/"; // Redirect to homepage if game URL is missing
-      } else {
-        let embedUrl;
-
-        if (gameUrl.startsWith(serverUrl2)) {
-          embedUrl = gameUrl;
-        } else {
-          embedUrl = `${serverUrl1}/${gameUrl}`;
-        }
-
-        document.getElementById("gameFrame").src = embedUrl;
-      }
-
-      // Fullscreen functionality & force button visibility
-      const gameFrame = document.getElementById("gameFrame");
-      const fullscreenButton = document.getElementById("fullscreenButton");
-
-      alert("Fullscreen button found!"); // Debugging alert
-
-      // Force the button to be visible
-      fullscreenButton.style.display = "block";
-
-      fullscreenButton.addEventListener("click", () => {
-        if (gameFrame.requestFullscreen) {
-          gameFrame.requestFullscreen();
-        } else if (gameFrame.webkitRequestFullscreen) {
-          gameFrame.webkitRequestFullscreen();
-        } else if (gameFrame.msRequestFullscreen) {
-          gameFrame.msRequestFullscreen();
-        } else {
-          alert("Fullscreen mode is not supported by this browser.");
-        }
-      });
+        fullscreenButton.addEventListener("click", () => {
+            if (gameFrame.requestFullscreen) {
+                gameFrame.requestFullscreen();
+            } else if (gameFrame.webkitRequestFullscreen) {
+                gameFrame.webkitRequestFullscreen();
+            } else if (gameFrame.msRequestFullscreen) {
+                gameFrame.msRequestFullscreen();
+            } else {
+                alert("Fullscreen mode is not supported.");
+            }
+        });
     </script>
-  </body>
+</body>
 </html>
