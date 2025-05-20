@@ -1780,5 +1780,11 @@
     "image": "ai",
     "url": "https://html-game-hosting.netlify.app/Bloons4/clbloonsTD4.html",
     "new": true
-  }  
+  },
+  {
+    "name": "Lands of Blight",
+    "image": "bi",
+    "url": "https://lob1112.netlify.app/",
+    "new": true
+  }
 ]
