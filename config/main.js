@@ -1,7 +1,7 @@
 // This changes the title of your site
 
 var sitename = "Skibidi Rudiguer Games"; // Change this to change the name of your website.
-var subtext = "Its coming out🤤"; // set the subtext
+var subtext = "I Hate Niggers🥷💩"; // set the subtext
 
 // more settings in main.css
 
